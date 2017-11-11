@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Bloggo</title>
-</head>
-<body>
-  <p>Hello world!</p>
-  <div>
-    {% for post in posts %}
+{% extends 'blog/base.html' %}
+
+{% block content %}
+  {% for post in posts %}
     <div>
-      <p>published: {{ post.published_date }}</p>
-      <h1><a href="#">{{ post.title }}</a></h1>
+      <p>{{ post.published_date }}</p>
+      <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
       <p>{{ post.text|linebreaksbr }}</p>
-    </div>  
-    {% endfor %}
-  </div>
-</body>
-</html>
+    </div>
+  {% endfor %}
+{% endblock %}
